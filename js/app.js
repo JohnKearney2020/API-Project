@@ -2,7 +2,9 @@
 //     --header "Accept: application/json"--header "user-key: bf6c0110a83f00fcbdc7913c5bdc9dc0"
 // "https://developers.zomato.com/api/v2.1/geocode?lat=29.7955405&lon=-95.5675944"
 
-fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=29.7955405&lon=-95.5675944`, {
+var lat = "29.6173519"
+var lon = "-95.2333921"
+fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
         headers: {
             "user-key": "bf6c0110a83f00fcbdc7913c5bdc9dc0"
         }
