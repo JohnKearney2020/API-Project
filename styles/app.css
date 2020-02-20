@@ -1,0 +1,12 @@
+.nav-bg {
+    background-color: #E8D246;
+}
+
+body {
+    background-color: #071E22 !important;
+}
+
+.navbar .nav-item a {
+    color: #071E22 !important;
+    font-size: 20px;
+}
