@@ -1,7 +1,3 @@
-// curl - X GET
-//     --header "Accept: application/json"--header "user-key: bf6c0110a83f00fcbdc7913c5bdc9dc0"
-// "https://developers.zomato.com/api/v2.1/geocode?lat=29.7955405&lon=-95.5675944"
-
 var lat = "29.6173519"
 var lon = "-95.2333921"
 fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
@@ -15,19 +11,26 @@ fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
     .then((res_array) => {
         // console.log(res_array.nearby_restaurants)
         let arrayOfNearby = res_array.nearby_restaurants
+        let $listGroupContainer = $('.list-group');
         // console.log(arrayOfNearby)
-        arrayOfNearby.forEach((e) => {
-            console.log(e)
-            console.log(e.restaurant.id)
-            console.log(e.restaurant.name)
-            // console.log(e.restaurant.location.address)
-            // console.log(e.restaurant.location)
-            // console.log(e.restaurant.location.latitude, e.restaurant.location.longitude)
+        let liTags = arrayOfNearby.map((e) => {
+            return `<li> Name: ${e.restaurant.name}</li>`
+            // return `<a class="list-group-item list-group-item-action" href="${char.url}">${char.name} <b>houses</b>: ${char.allegiances.length}</a>`
         })
-    })
+        $listGroupContainer.html(liTags.join(''));
+        //
+        // arrayOfNearby.forEach((e) => {
+        //     // console.log(e)
+        //     // console.log(e.restaurant.id)
+        //     console.log(e.restaurant.name)
 
-// curl - X GET--header "Accept: application/json"--header "user-key: bf6c0110a83f00fcbdc7913c5bdc9dc0"
-// "https://developers.zomato.com/api/v2.1/restaurant?res_id=16879929"
+
+
+        //     // console.log(e.restaurant.location.address)
+        //     // console.log(e.restaurant.location)
+        //     // console.log(e.restaurant.location.latitude, e.restaurant.location.longitude)
+        // })
+    })
 var restaurant_id = "16879823"
 
 fetch(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${restaurant_id}`, {
@@ -47,6 +50,6 @@ fetch(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${restaurant_id}
         arrayOfPhotos.forEach((e) => {
             // console.log(e)
             // console.log(e.photo.url)
-            console.log(e.photo.thumb_url)
+            // console.log(e.photo.thumb_url)
         })
     })
