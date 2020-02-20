@@ -10,3 +10,11 @@ body {
 .main-cont {
     color: white;
 }
+
+.list-group {
+    list-style-type: none;
+}
+
+.res-item {
+    margin-bottom: 10px;
+}

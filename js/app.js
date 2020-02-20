@@ -14,22 +14,17 @@ fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
         let $listGroupContainer = $('.list-group');
         // console.log(arrayOfNearby)
         let liTags = arrayOfNearby.map((e) => {
-            return `<li> Name: ${e.restaurant.name}</li>`
+            console.log(e.restaurant.id)
+            // console.log(e.restaurant.location.latitude, e.restaurant.location.longitude)
+            return `<li class="res-item">  ${e.restaurant.name} <br> ${e.restaurant.location.address}</li>`
+            // console.log(e)
+
+            // console.log(e.restaurant.location.address)
+            // console.log(e.restaurant.location)
             // return `<a class="list-group-item list-group-item-action" href="${char.url}">${char.name} <b>houses</b>: ${char.allegiances.length}</a>`
         })
         $listGroupContainer.html(liTags.join(''));
-        //
-        // arrayOfNearby.forEach((e) => {
-        //     // console.log(e)
-        //     // console.log(e.restaurant.id)
-        //     console.log(e.restaurant.name)
 
-
-
-        //     // console.log(e.restaurant.location.address)
-        //     // console.log(e.restaurant.location)
-        //     // console.log(e.restaurant.location.latitude, e.restaurant.location.longitude)
-        // })
     })
 var restaurant_id = "16879823"
 
