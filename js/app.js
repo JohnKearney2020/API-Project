@@ -17,8 +17,27 @@ fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
         let arrayOfNearby = res_array.nearby_restaurants
         // console.log(arrayOfNearby)
         arrayOfNearby.forEach((e) => {
-            console.log(e.restaurant.name)
+            console.log(e.restaurant.id)
+            // console.log(e.restaurant.name)
+            // console.log(e.restaurant.location.address)
+            // console.log(e.restaurant.location)
+            // console.log(e.restaurant.location.latitude, e.restaurant.location.longitude)
         })
-        // prints an array with 10 restaurants in that area
+    })
 
+// curl - X GET--header "Accept: application/json"--header "user-key: bf6c0110a83f00fcbdc7913c5bdc9dc0"
+// "https://developers.zomato.com/api/v2.1/restaurant?res_id=16879929"
+var restaurant_id = "16879823"
+fetch(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${restaurant_id}`, {
+        headers: {
+            "user-key": "bf6c0110a83f00fcbdc7913c5bdc9dc0"
+        }
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .then((restaurant_info) => {
+        // console.log(restaurant_info.menu_url)
+        // gives link to the menu 
+        console.log(restaurant_info)
     })
