@@ -1,0 +1,20 @@
+body {
+    background-color: #071E22 !important;
+}
+
+.navbar .nav-item a {
+    color: #071E22 !important;
+    font-size: 20px;
+}
+
+.main-cont {
+    color: white;
+}
+
+.list-group {
+    list-style-type: none;
+}
+
+.res-item {
+    margin-bottom: 10px;
+}
