@@ -39,7 +39,7 @@ fetch(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${restaurant_id}
         // console.log(arrayOfPhotos)
         arrayOfPhotos.forEach((e) => {
             // console.log(e)
-            // console.log(e.photo.url)
-            // console.log(e.photo.thumb_url)
+            console.log(e.photo.url)
+            console.log(e.photo.thumb_url)
         })
     })
