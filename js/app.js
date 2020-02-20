@@ -13,5 +13,12 @@ fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
         return response.json();
     })
     .then((res_array) => {
-        console.log(res_array)
+        // console.log(res_array.nearby_restaurants)
+        let arrayOfNearby = res_array.nearby_restaurants
+        // console.log(arrayOfNearby)
+        arrayOfNearby.forEach((e) => {
+            console.log(e.restaurant.name)
+        })
+        // prints an array with 10 restaurants in that area
+
     })
