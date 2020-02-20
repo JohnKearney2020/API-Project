@@ -28,6 +28,7 @@ fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
 // curl - X GET--header "Accept: application/json"--header "user-key: bf6c0110a83f00fcbdc7913c5bdc9dc0"
 // "https://developers.zomato.com/api/v2.1/restaurant?res_id=16879929"
 var restaurant_id = "16879823"
+
 fetch(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${restaurant_id}`, {
         headers: {
             "user-key": "bf6c0110a83f00fcbdc7913c5bdc9dc0"
@@ -39,5 +40,12 @@ fetch(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${restaurant_id}
     .then((restaurant_info) => {
         // console.log(restaurant_info.menu_url)
         // gives link to the menu 
-        console.log(restaurant_info)
+        // console.log(restaurant_info.photos)
+        var arrayOfPhotos = restaurant_info.photos
+        // console.log(arrayOfPhotos)
+        arrayOfPhotos.forEach((e) => {
+            // console.log(e)
+            // console.log(e.photo.url)
+            console.log(e.photo.thumb_url)
+        })
     })
