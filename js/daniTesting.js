@@ -9,29 +9,16 @@ fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
         return response.json();
     })
     .then((res_array) => {
-        // console.log(res_array.nearby_restaurants)
         let arrayOfNearby = res_array.nearby_restaurants
+        console.log(res_array.nearby_restaurants)
         let $listGroupContainer = $('.list-group');
-        // console.log(arrayOfNearby)
         let liTags = arrayOfNearby.map((e) => {
-            // console.log(e.restaurant.id)
-            fetch(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${e.restaurant.id}`, {
-                    headers: {
-                        "user-key": "bf6c0110a83f00fcbdc7913c5bdc9dc0"
-                    }
-                })
-                .then((response) => {
-                    return response.json();
-                })
-                .then((restaurant_info) => {
-                    console.log(restaurant_info)
-                    // var arrayOfPhotos = restaurant_info.photos
-                    // arrayOfPhotos.forEach((e) => {
-                    //     console.log(e.photo.url)
-                    //     console.log(e.photo.thumb_url)
-                    // })
-                })
-
+            return `<a class='list-group-item list-group-item-action' href="${e.restaurant.url}">${e.restaurant.name}</a>`
         })
-
+        $listGroupContainer.html(liTags.join(''));
     })
+
+$div = $(".list-group");
+$div.click((e) => {
+    alert('ouch')
+})
