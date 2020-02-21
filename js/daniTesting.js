@@ -12,15 +12,15 @@ fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
         let arrayOfNearby = res_array.nearby_restaurants
         let $listGroupContainer = $('.list-group');
         let liTags = arrayOfNearby.map((e) => {
-            console.log(e.restaurant.id)
-            return `<li class='list-group-item list-group-item-action' dataResId=${e.restaurant.id}>${e.restaurant.name}</li>`
+            // console.log(e)
+            return `<li class='list-group-item list-group-item-action' id='${e.restaurant.id}'>${e.restaurant.name}</li>`
         })
         $listGroupContainer.html(liTags.join(''));
     })
 $div = $(".list-group");
 $div.click((e) => {
     let res_link = e.target
-    let restaurant_id = res_link.getAttribute('dataResId')
+    let restaurant_id = res_link.getAttribute('id')
     fetch(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${restaurant_id}`, {
             headers: {
                 "user-key": "bf6c0110a83f00fcbdc7913c5bdc9dc0"
@@ -30,10 +30,10 @@ $div.click((e) => {
             return response.json();
         })
         .then((restaurant_info) => {
-            var arrayOfPhotos = restaurant_info.photos
-            arrayOfPhotos.forEach((e) => {
-                // console.log(e.photo.url)
+            let arrayOfPhotos = restaurant_info.photos
+            let imgTag = arrayOfPhotos.map((e) => {
                 console.log(e.photo.thumb_url)
+                // console.log(e.photo)
             })
         })
 })
