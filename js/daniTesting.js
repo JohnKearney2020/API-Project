@@ -31,9 +31,12 @@ $div.click((e) => {
         })
         .then((restaurant_info) => {
             let arrayOfPhotos = restaurant_info.photos
+            let $listGroupCont = $(`#${restaurant_id}`)
             let imgTag = arrayOfPhotos.map((e) => {
-                console.log(e.photo.thumb_url)
+                // console.log(e.photo.thumb_url)
                 // console.log(e.photo)
+                return `<img src=${e.photo.thumb_url}> `
             })
+            $listGroupCont.html(imgTag.join(''))
         })
 })
