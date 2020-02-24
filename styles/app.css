@@ -1,6 +1,15 @@
 body {
     background-color: #071E22 !important;
+    height: 100%;
 }
+/* body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+} */
+
+
 
 .navbar .nav-item a {
     color: #071E22 !important;
