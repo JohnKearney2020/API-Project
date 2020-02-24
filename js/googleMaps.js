@@ -22,7 +22,10 @@ function initMap() {
 //============================================================================================================================
     function displayDirections() {
         var travelMode = 'DRIVING';
+        // var address = document.getElementById('zoom-to-area-text').value;
+        // var origin = document.getElementById('InputAddress1').value;
         var origin = player1;
+        // var destination = document.getElementById('InputAddress2').value;
         var destination = player2;
         // Style the markers a bit. This will be our listing marker icon.
         var defaultIcon = makeMarkerIcon('0091ff');
