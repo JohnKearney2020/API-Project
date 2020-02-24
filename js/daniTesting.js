@@ -12,10 +12,11 @@
 //         let arrayOfNearby = res_array.nearby_restaurants
 //         let $listGroupContainer = $('.list-group');
 //         let liTags = arrayOfNearby.map((e) => {
-//             return `<li class='list-group-item list-group-item-action' id='${e.restaurant.id}'>${e.restaurant.name}</li>`
+//             return `<li class='list-group-item list-group-item-action' id='${e.restaurant.id}'>${e.restaurant.name} <br> ${e.restaurant.location.address}</li>`
 //         })
 //         $listGroupContainer.html(liTags.join(''));
 //     })
+// let locArray = []
 // $div = $(".list-group");
 // $div.click((e) => {
 //     let res_link = e.target
@@ -29,6 +30,7 @@
 //             return response.json();
 //         })
 //         .then((restaurant_info) => {
+//             // console.log(restaurant_info.location.latitude, restaurant_info.location.longitude)
 //             let arrayOfPhotos = restaurant_info.photos
 //             let $listGroupCont = $(`#${restaurant_id}`)
 //             let imgTag = arrayOfPhotos.map((e) => {

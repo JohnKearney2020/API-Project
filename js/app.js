@@ -12,7 +12,7 @@ fetch(`https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`, {
         let arrayOfNearby = res_array.nearby_restaurants
         let $listGroupContainer = $('.list-group');
         let liTags = arrayOfNearby.map((e) => {
-            return `<li class='list-group-item list-group-item-action' id='${e.restaurant.id}'>${e.restaurant.name}</li>`
+            return `<li class='list-group-item list-group-item-action' id='${e.restaurant.id}'>${e.restaurant.name} <br> ${e.restaurant.location.address}</li>`
         })
         $listGroupContainer.html(liTags.join(''));
     })
