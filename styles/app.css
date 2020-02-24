@@ -18,3 +18,15 @@ body {
 .res-item {
     margin-bottom: 10px;
 }
+
+.img-resize {
+    width: 100%;
+    height: auto;
+}
+
+.us-box {
+    color: white;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    font-size: 18px;
+}
