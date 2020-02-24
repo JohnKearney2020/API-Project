@@ -1,0 +1,12 @@
+#map {
+    bottom:0px;
+    height: 82%;
+    left: 500px;
+    position: absolute;
+    right: 0px;
+}
+
+.hidden {
+    /* used to store and hide the marker coordinates */
+    display: none;
+}
