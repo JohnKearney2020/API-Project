@@ -1,5 +1,4 @@
 var map;
-console.log('google maps js link ok');
 var player1 = '3 Hermann Museum Cir Dr Houston';
 var player2 =
         '1334 Brittmoore Rd Houston';
@@ -17,8 +16,6 @@ function initMap() {
         displayDirections();
     });
 }
-
-    
 
 //============================================================================================================================
 //                                                  Get Directions Function
@@ -79,7 +76,7 @@ function initMap() {
                 }
             }
             // var midpoint = response.routes[0].overview_path[midpointIndex];
-            console.log(`midpoint is ${midpoint}`);
+            // console.log(`midpoint is ${midpoint}`);
             // console.log(`Total path points: ${pathPointSum}`);
 
             //----------------------------------------------------
@@ -102,7 +99,16 @@ function initMap() {
             marker.addListener('mouseout', function() {
             this.setIcon(defaultIcon);
             });
-
+            //---------------------------------------------------------------------------
+            //                  all the Restaurant API and get markers
+            //---------------------------------------------------------------------------
+            var midPointLat = midpoint.lat();
+            console.log(`midpoint lat is: ${midPointLat}`);
+            var midPointLng = midpoint.lng();
+            console.log(`midpoint lng is: ${midPointLng}`);
+            var nearbyRestaurantArray = callRestaurantAPI(midPointLat, midPointLng);
+            console.log('trying to print nearby restaurant arrray:');
+            console.log(nearbyRestaurantArray);
             if (status === google.maps.DirectionsStatus.OK) {
             var directionsDisplay = new google.maps.DirectionsRenderer({ //we need to create a new directions renderer
             //this renderer displays the detailed steps and polylines
