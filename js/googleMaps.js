@@ -15,6 +15,9 @@ function initMap() {
     $('#showDirections').on('click', function(event) {
         displayDirections();
     });
+    // $('#showDirections').on('click', function(event) {
+    //     callRestaurantAPI(midPointLat, midPointLng);
+    // });
 }
 
 //============================================================================================================================
@@ -42,7 +45,7 @@ function initMap() {
             // The destination is user entered address.
             destination: destination,
             travelMode: google.maps.TravelMode[mode], //the travel mode the user selected
-        }, function(response, status) {
+        },function(response, status) {
             console.log(response);
             var totalPointsInRoute = response.routes[0].overview_path.length;
             console.log(totalPointsInRoute); //this is the total number of points in our route
@@ -78,9 +81,6 @@ function initMap() {
                     break; //once we've found the time midpoint we don't need to keep looping
                 }
             }
-            // var midpoint = response.routes[0].overview_path[midpointIndex];
-            // console.log(`midpoint is ${midpoint}`);
-            // console.log(`Total path points: ${pathPointSum}`);
 
             //----------------------------------------------------
             //       Create a marker Icon for the Midpoint
@@ -103,15 +103,15 @@ function initMap() {
             this.setIcon(defaultIcon);
             });
             //---------------------------------------------------------------------------
-            //                  all the Restaurant API and get markers
+            //                  Call the Restaurant API and get markers
             //---------------------------------------------------------------------------
             var midPointLat = midpoint.lat();
             console.log(`midpoint lat is: ${midPointLat}`);
             var midPointLng = midpoint.lng();
             console.log(`midpoint lng is: ${midPointLng}`);
-            var nearbyRestaurantArray = callRestaurantAPI(midPointLat, midPointLng);
-            console.log('trying to print nearby restaurant arrray:');
-            console.log(nearbyRestaurantArray);
+            // var nearbyRestaurantArray = callRestaurantAPI(midPointLat, midPointLng);
+            // console.log('trying to print nearby restaurant arrray:');
+            // console.log(nearbyRestaurantArray);
             if (status === google.maps.DirectionsStatus.OK) {
             var directionsDisplay = new google.maps.DirectionsRenderer({ //we need to create a new directions renderer
             //this renderer displays the detailed steps and polylines
@@ -125,8 +125,8 @@ function initMap() {
             } else {
             window.alert('Directions request failed due to ' + status);
             }
-        });
-        }
+        }); //this is tied to the repsonse function above
+    }
 
 //============================================================================================================================
 //                                                  Marker Function
@@ -145,10 +145,14 @@ function initMap() {
     return markerImage;
     }
 
+//============================================================================================================================
+//                                                  Populate InfoWindow Function
+//============================================================================================================================
     // This function populates the infowindow when the marker is clicked. We'll only allow
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateMidpointInfoWindow(marker, infowindow) {
-        infowindow.setContent(`<div>This is the midpoint between you and your companion.</div><div class="hidden" id="midPointCoords">${marker.position}</div>`);
+        infowindow.setContent(`<div style="color: black">This is the midpoint between you and your companion.</div><div class="hidden" id="midPointCoords">${marker.position}</div>`);
+        // infowindow.setContent(`<div>This is the midpoint between you and your companion.</div>`);
         infowindow.open(map, marker);
     }
