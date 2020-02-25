@@ -3,6 +3,7 @@ window.addEventListener("load", () => {
     let lat;
     let tempCont = document.querySelector(".temp")
     let sumCont = document.querySelector(".summary")
+    let iconCont = document.querySelector(".icon")
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             console.log(position)
@@ -16,11 +17,11 @@ window.addEventListener("load", () => {
                 })
                 .then(data => {
                     console.log(data)
-                    const { temperature, summary } = data.currently
+                    const { temperature, summary, icon } = data.currently
                     // set DOM elements from the api
                     tempCont.textContent = temperature
                     sumCont.textContent = `Today: ${summary} currently.`
-
+                    iconCont.innerHTML = icon
                 })
         });
     }
