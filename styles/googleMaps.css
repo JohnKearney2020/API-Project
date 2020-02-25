@@ -1,9 +1,8 @@
 #map {
-    bottom:0px;
-    height: 82%;
-    left: 500px;
-    position: absolute;
-    right: 0px;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
 }
 
 .hidden {
