@@ -21,7 +21,17 @@ window.addEventListener("load", () => {
                     // set DOM elements from the api
                     tempCont.textContent = temperature
                     sumCont.textContent = `Today: ${summary} currently.`
-                    iconCont.innerHTML = icon
+                    // iconCont.innerHTML = icon
+                    switch (icon) {
+                        case "clear-day":
+                            console.log("its clear day")
+
+                            break;
+                        case ("clear-night"):
+                            console.log("its clear night")
+                            break;
+
+                    }
                 })
         });
     }
