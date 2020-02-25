@@ -1,36 +1,35 @@
-let weatherCont = document.querySelector('#whiteOnWhite')
-let tempCont = document.querySelector(".temp")
-let sumCont = document.querySelector(".summary")
+window.addEventListener("load", () => {
+    let long;
+    let lat;
+    let tempCont = document.querySelector(".temp")
+    let sumCont = document.querySelector(".summary")
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            console.log(position)
+            long = position.coords.longitude
+            lat = position.coords.latitude
+            const proxy = 'https://cors-anywhere.herokuapp.com/'
+            const api = `${proxy}https://api.darksky.net/forecast/34983279487e255ca75000221c62bb9f/${lat},${long}`
+            fetch(api)
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    console.log(data)
+                    const { temperature, summary, icon } = data.currently
+                    // set DOM elements from the api
+                    tempCont.textContent = temperature
+                    sumCont.textContent = `Today: ${summary} currently.`
+                    //set icon
+                    setIcons(icon, document.querySelector(".icon"))
+                })
+        });
+    }
+    function setIcons(icon, iconID) {
+        const skycons = new Skycons({ color: "black" })
+        const currentIcon = icon.replace(/-/g, "_").toUpperCase();
+        skycons.play();
+        return skycons.set(iconID, skycons[currentIcon]);
+    }
+})
 
-fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/34983279487e255ca75000221c62bb9f/29.7559698,-95.3573194`)
-    .then((response) => {
-        return response.json();
-    })
-    .then((res_array) => {
-        console.log(res_array)
-        let arrayCurrent = res_array.currently
-        let currentTemp = arrayCurrent.temperature + ' F'
-        let currentSum = arrayCurrent.summary
-        let currentIcon = arrayCurrent.icon
-        console.log(currentTemp)
-        console.log(currentSum)
-        console.log(currentIcon)
-    })
-
-
-
-
-
-// var skycons = new Skycons({ "color": "pink" });
-// var icons = new Skycons(),
-// list  = [
-//   "clear-day", "clear-night", "partly-cloudy-day",
-//   "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-//   "fog"
-// ],
-// i;
-
-// for(i = list.length; i--; )
-// icons.set(list[i], list[i]);
-
-// icons.play();
