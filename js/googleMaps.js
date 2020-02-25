@@ -140,6 +140,6 @@ function initMap() {
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateMidpointInfoWindow(marker, infowindow) {
-        infowindow.setContent(`<div>This is the midpoint between you and your companion.</div><div class="hidden" id="midPointCoords">${marker.position}</div>`);
+        infowindow.setContent(`<div style="color: black">This is the midpoint between you and your companion.</div><div class="hidden" id="midPointCoords">${marker.position}</div>`);
         infowindow.open(map, marker);
     }
