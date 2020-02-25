@@ -1,26 +1,26 @@
 let weatherCont = document.querySelector('#whiteOnWhite')
-function getWeather() {
-    fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/34983279487e255ca75000221c62bb9f/29.7559698,-95.3573194`)
-        .then((response) => {
-            return response.json();
-        })
-        .then((res_array) => {
-            console.log(res_array)
-            let arrayCurrent = res_array.currently
-            let currentTemp = arrayCurrent.temperature + ' F'
-            let currentSum = arrayCurrent.summary
-            let currentIcon = arrayCurrent.icon
-            console.log(currentTemp)
-            console.log(currentSum)
-            console.log(currentIcon)
-            return `${currentSum}`
+let tempCont = document.querySelector(".temp")
+let sumCont = document.querySelector(".summary")
 
-        })
-        .then((result) => {
-            weatherCont.innerHTML = result
-        })
-}
-getWeather()
+fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/34983279487e255ca75000221c62bb9f/29.7559698,-95.3573194`)
+    .then((response) => {
+        return response.json();
+    })
+    .then((res_array) => {
+        console.log(res_array)
+        let arrayCurrent = res_array.currently
+        let currentTemp = arrayCurrent.temperature + ' F'
+        let currentSum = arrayCurrent.summary
+        let currentIcon = arrayCurrent.icon
+        console.log(currentTemp)
+        console.log(currentSum)
+        console.log(currentIcon)
+    })
+
+
+
+
+
 // var skycons = new Skycons({ "color": "pink" });
 // var icons = new Skycons(),
 // list  = [
