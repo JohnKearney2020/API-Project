@@ -39,3 +39,11 @@ body {
     margin-bottom: 80px;
     font-size: 18px;
 }
+#showDirections:hover{
+    opacity: 0.7!important;
+    
+}
+.justify-content-center{
+    padding-left: 7px! important;
+    padding-right: 7px! important;
+}
