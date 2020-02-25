@@ -16,20 +16,13 @@ window.addEventListener("load", () => {
                 })
                 .then(data => {
                     console.log(data)
-                    const { temperature, summary, icon } = data.currently
+                    const { temperature, summary } = data.currently
                     // set DOM elements from the api
                     tempCont.textContent = temperature
                     sumCont.textContent = `Today: ${summary} currently.`
-                    //set icon
-                    setIcons(icon, document.querySelector(".icon"))
+
                 })
         });
-    }
-    function setIcons(icon, iconID) {
-        const skycons = new Skycons({ color: "black" })
-        const currentIcon = icon.replace(/-/g, "_").toUpperCase();
-        skycons.play();
-        return skycons.set(iconID, skycons[currentIcon]);
     }
 })
 
