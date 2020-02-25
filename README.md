@@ -1,5 +1,5 @@
 # Meet Me Halfway
-## Digital Crafts group project  by John, Jecce, Daniela  and Alina
+## Digital Crafts group project  by John, Jesse, Daniela  and Alina
 *You are welcome to check out the project here:* ADD ADDRESS!
 
 
