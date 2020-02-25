@@ -109,7 +109,7 @@ function initMap() {
             console.log(`midpoint lat is: ${midPointLat}`);
             var midPointLng = midpoint.lng();
             console.log(`midpoint lng is: ${midPointLng}`);
-            // var nearbyRestaurantArray = callRestaurantAPI(midPointLat, midPointLng);
+            var nearbyRestaurantArray = callRestaurantAPI(midPointLat, midPointLng);
             // console.log('trying to print nearby restaurant arrray:');
             // console.log(nearbyRestaurantArray);
             if (status === google.maps.DirectionsStatus.OK) {
