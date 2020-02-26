@@ -19,6 +19,9 @@ var midpoint;
 var duration = 0;
 var restaurantMarkers = [];
 var midPointMarker = [];
+var directionsService;
+var directionsDisplay;
+
 
 // var restarauntIcon = 'https://i.imgur.com/dV2Lj7E.png';
 
@@ -57,6 +60,12 @@ function displayDirections() {
         midPointMarker[0].setMap(null);
         midPointMarker = [];
     }
+    // directionsDisplay.setMap(null);
+    // directionsDisplay.setDirections(null);
+
+
+
+
     var origin = document.getElementById('InputAddress1').value;
     var destination = document.getElementById('InputAddress2').value;
     var travelMode = 'DRIVING';
@@ -74,7 +83,8 @@ function displayDirections() {
     var largeInfowindow = new google.maps.InfoWindow();
     var restaurantInfoWindow = new google.maps.InfoWindow();
 
-    var directionsService = new google.maps.DirectionsService; //we start by creating a new DirectionsService request
+    // var directionsService = new google.maps.DirectionsService; //we start by creating a new DirectionsService request
+    directionsService = new google.maps.DirectionsService; //we start by creating a new DirectionsService request
     var mode = 'DRIVING';
     directionsService.route({ //here we calculate the route
         // The origin is the passed in marker's position.
@@ -235,8 +245,10 @@ function displayDirections() {
             });
 
         if (status === google.maps.DirectionsStatus.OK) {
+            // directionsDisplay.setMap(null);
+            // directionsDisplay.setDirections(null);
             console.log('restaurants result check');
-            var directionsDisplay = new google.maps.DirectionsRenderer({ //we need to create a new directions renderer
+            directionsDisplay = new google.maps.DirectionsRenderer({ //we need to create a new directions renderer
                 //this renderer displays the detailed steps and polylines
                 map: map, //specifies which map we want, itc our map
                 directions: response, //specify we get the directions from our route response
@@ -245,6 +257,7 @@ function displayDirections() {
                     strokeColor: 'green' //route is green
                 },
             });
+            // directionsDisplay.setMap(map);
         } else {
             window.alert('Directions request failed due to ' + status);
         }
