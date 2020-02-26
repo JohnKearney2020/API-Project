@@ -7,11 +7,13 @@ var map;
 console.log('google maps js link ok');
 // var player1 = '3 Hermann Museum Cir Dr Houston';
 // var player2 = '3 Hermann Museum Cir Dr Houston';
-var player2 = '2101 E NASA Pkwy, Houston, TX 77058';
+// var player2 = '2101 E NASA Pkwy, Houston, TX 77058';
 // var player2 =
 //         '1334 Brittmoore Rd Houston';
-var player1 =
-        '1334 Brittmoore Rd Houston';
+
+
+// var player1 =
+//         '1334 Brittmoore Rd Houston';
 var durations = []; //this array will hold the duration times for the two trips we will calculate: player1 to player2, and player2 to player1.
 var midpoint;
 var duration = 0;
@@ -51,14 +53,15 @@ function initMap() {
         //----------------------------------------
         //  clear any existing midpoint markers
         //----------------------------------------
-        if(midPointMarker.length > 0){
+        if(midPointMarker.length > 0){ //if we already have a midpoint marker on the map, this will delete it
             midPointMarker[0].setMap(null);
             midPointMarker = [];
         }
-
+        var origin = document.getElementById('InputAddress1').value;
+        var destination = document.getElementById('InputAddress2').value;
         var travelMode = 'DRIVING';
-        var origin = player1;
-        var destination = player2;
+        // var origin = player1;
+        // var destination = player2;
         // Style the markers a bit. This will be our listing marker icon.
         // var defaultIcon = makeMidMarkerIcon('0091ff');
         var defaultIcon = makeMidMarkerIcon('af7ac5');
@@ -69,6 +72,7 @@ function initMap() {
         // var highlightedRestaurantIcon = makeRestaurantMarkerIcon('ec7063');
         var highlightedRestaurantIcon = makeRestaurantMarkerIcon('fdfefe');
         var largeInfowindow = new google.maps.InfoWindow();
+        var restaurantInfoWindow = new google.maps.InfoWindow();
 
         var directionsService = new google.maps.DirectionsService; //we start by creating a new DirectionsService request
         var mode = 'DRIVING';
@@ -152,13 +156,6 @@ function initMap() {
                 console.log(nearbyRestaurants);
             })
             .done(()=>{
-                // //clear any existing restaurant markers
-                // removeMarkers();
-                // function removeMarkers(){
-                //     for(i=0; i<restaurantMarkers.length; i++){
-                //         restaurantMarkers[i].setMap(null);
-                //     }
-                // }
                 for(let i = 0; i < nearbyRestaurants.length; i++) {
                     // console.log(`${i}`);
                     // console.log(new google.maps.LatLng(nearbyRestaurants[i].restaurant.location.latitude, nearbyRestaurants[i].restaurant.location.longitude));
@@ -176,16 +173,27 @@ function initMap() {
                 restaurantMarker.addListener('mouseout', function() {
                     this.setIcon(restarauntIcon);
                 });
-                var infowindow = new google.maps.InfoWindow;
-                    google.maps.event.addListener(restaurantMarker, 'click', (function(restaurantMarker){
-                        return function(){
-                            infowindow.setContent(`<div id="content" style="color:black">`+ `<h4 class="font" id="firstHeading">${nearbyRestaurants[i].restaurant.name}</h4>`+
-                            `<p class="font">${nearbyRestaurants[i].restaurant.location.address}</p>`+`<p class="font">${nearbyRestaurants[i].restaurant.timings}</p>`+
-                            `<p class="font">${nearbyRestaurants[i].restaurant.cuisines}</p>`+ `<p class="font">${nearbyRestaurants[i].restaurant.phone_numbers}</p>`+
-                            `</div>`);
-                            infowindow.open(map, marker)
-                        }
-                    })(marker));
+                // give each marker a unique infowindow
+                let restaurantName = nearbyRestaurants[i].restaurant.name;
+                let restaurantAddress = nearbyRestaurants[i].restaurant.location.address;
+                let restaurantHours = nearbyRestaurants[i].restaurant.timings;
+                let restaurantTypeOfFood = nearbyRestaurants[i].restaurant.cuisines;
+                let restaurantPhoneNumber = nearbyRestaurants[i].restaurant.phone_numbers;
+                let restaurantURL = nearbyRestaurants[i].restaurant.url
+                let infowindowContentString = `<div id="content" style="color:black"><h4 class="font" id="firstHeading">${restaurantName}</h4><p class="font">${restaurantAddress}</p><h6 class="font">${restaurantTypeOfFood}</h6><p class="font">${restaurantHours}</p><p class="font">${restaurantPhoneNumber}</p><a href="${restaurantURL}" target="#">Restaurant on Zomato</a>`
+                restaurantMarker.addListener('click', function() {
+                    populateRestaurantInfoWindow(this, restaurantInfoWindow, infowindowContentString); //the 'this' is critical to get unique infowindow for each marker
+                });
+                
+                    // google.maps.event.addListener(restaurantMarker, 'click', (function(restaurantMarker){
+                    //     return function(){
+                    //         infowindow.setContent(`<div id="content" style="color:black">`+ `<h4 class="font" id="firstHeading">${nearbyRestaurants[i].restaurant.name}</h4>`+
+                    //         `<p class="font">${nearbyRestaurants[i].restaurant.location.address}</p>`+`<p class="font">${nearbyRestaurants[i].restaurant.timings}</p>`+
+                    //         `<p class="font">${nearbyRestaurants[i].restaurant.cuisines}</p>`+ `<p class="font">${nearbyRestaurants[i].restaurant.phone_numbers}</p>`+
+                    //         `</div>`);
+                    //         infowindow.open(map, restaurantMarker);
+                    //     }
+                    // })(marker));
                 restaurantMarkers.push(restaurantMarker); //ass the current 
                 }
                 // console.log(`${restaurantMarkers}`);
@@ -261,7 +269,7 @@ function initMap() {
 // =====================================================
 // New infowindow function for street view tutorial
 // =====================================================
-function populateRestaurantInfoWindow(marker, infowindow) {
+function populateRestaurantInfoWindow(marker, infowindow, contentString) {
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker != marker) {
         // Clear the infowindow content to give the streetview time to load.
@@ -271,7 +279,7 @@ function populateRestaurantInfoWindow(marker, infowindow) {
         infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
     });
-    infowindow.setContent(`<div style="color: black">Test</div>`);
+    infowindow.setContent(`${contentString}`);
     infowindow.open(map, marker);
     }
 }
