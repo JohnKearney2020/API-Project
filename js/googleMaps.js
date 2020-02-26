@@ -222,11 +222,12 @@ function displayDirections() {
                             console.log(e.restaurant.name)
                             return `<li class='list-group-item list-group-item-action'> 
                             <h5>${e.restaurant.name}</h5> 
-                            <br> ${e.restaurant.location.address} 
+                            <p> ${e.restaurant.location.address} 
                             <br> ${e.restaurant.timings}
                             <br> ${e.restaurant.phone_numbers}
                             <br> ${e.restaurant.cuisines}
                             <br> <a href="${e.restaurant.url}">Restaurant on Zomato</a>
+                            </p>
                             </li>`
                         })
                         $listGroupContainer.html(liTags.join(''));
