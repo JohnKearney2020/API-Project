@@ -1,6 +1,8 @@
 # Meet Me Halfway
 ## Digital Crafts group project  by John, Jesse, Daniela  and Alina
-*You are welcome to check out the project here:* ADD ADDRESS!
+*You are welcome to check out the project here:* ADD ADDRESS!<br/>
+Our application was built using HTML, CSS, Bootstrap and JavaScript. Data is generated using GoogleMap APIs,DarkSky weather API and ZomatoAPI. Four participants collaborated using GitHub. In addition to front-end development, this project allows us to master  version control  habits and merge conflict-solving skills.
+The idea of the application is to enable user to  find perfect meeting point in the middle between two addresses  distance-wise.
 
 
 ### Technical Requirements:
@@ -10,7 +12,20 @@
 * You must host your site on AWS
 
 
-Our application was built using HTML, CSS, and JavaScript. Data is generated using GoogleMap APIs  and ZomatoAPI. Four participants collaborated using GitHub. In addition to front-end development, this project allows us to master  version control  habits and merge conflict-solving skills.
-The idea of the application is to enable user to  find perfect meeting point in the middle between two addresses both time-wise or distance-wise.
 
-## How it Works
+### Technologies:
+* HTML
+* CSS
+* Bootstrap
+* JavaScript
+* API
+
+## How it Works:
+User enters his address and friend's address and pushes "Meet Halfway!" button<br>
+![First screenshot](images/1img.png)<br>
+The application calculates the meeting point  in the middle between to addresses and shows  it on the map marked with lilac pin. <br>Red pins represent restaurants and caffee close by to the meeting point.<br>
+![Second screenshot](images/2img.png)<br>
+By hovering over red pins, can see the name of the eatery. Clicking the pin shows a little pop-up window with additional information about the place.<br>
+![Third screenshot](images/3img.png)<br>
+On About Us  page  user can find information about our developer team<br>
+![Fourth screenshot](images/4img.png)<br>
