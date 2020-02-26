@@ -19,7 +19,7 @@ var midpoint;
 var duration = 0;
 var restaurantMarkers = [];
 var midPointMarker = [];
-var directionsService;
+// var directionsService;
 var directionsDisplay;
 
 
@@ -35,6 +35,9 @@ function initMap() {
     $('#showDirections').on('click', function (event) {
         displayDirections();
     });
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+
 }
 
 
@@ -60,9 +63,18 @@ function displayDirections() {
         midPointMarker[0].setMap(null);
         midPointMarker = [];
     }
+    // if(directionsDisplay.map != null){
+    //     directionsDisplay.setMap(null);
+    // }
     // directionsDisplay.setMap(null);
     // directionsDisplay.setDirections(null);
-
+    // var directionsService;
+    // var directionsDisplay;
+    // Clear past routes
+    if (directionsDisplay != null) {
+        directionsDisplay.setMap(null);
+        directionsDisplay = null;
+    }
 
 
 
@@ -247,6 +259,7 @@ function displayDirections() {
         if (status === google.maps.DirectionsStatus.OK) {
             // directionsDisplay.setMap(null);
             // directionsDisplay.setDirections(null);
+            // directionDisplay.set('directions', null);
             console.log('restaurants result check');
             directionsDisplay = new google.maps.DirectionsRenderer({ //we need to create a new directions renderer
                 //this renderer displays the detailed steps and polylines
