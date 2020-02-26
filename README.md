@@ -10,7 +10,18 @@
 * You must host your site on AWS
 
 
-Our application was built using HTML, CSS, and JavaScript. Data is generated using GoogleMap APIs  and ZomatoAPI. Four participants collaborated using GitHub. In addition to front-end development, this project allows us to master  version control  habits and merge conflict-solving skills.
+
+### Technologies:
+* HTML
+* CSS
+* Bootstrap
+* JavaScript
+* API
+
+Our application was built using HTML, CSS, and JavaScript. Data is generated using GoogleMap APIs,DarkSky weather API and ZomatoAPI. Four participants collaborated using GitHub. In addition to front-end development, this project allows us to master  version control  habits and merge conflict-solving skills.
 The idea of the application is to enable user to  find perfect meeting point in the middle between two addresses both time-wise or distance-wise.
 
-## How it Works
+## How it Works:
+User enters his address and friend's address and pushes "Meet Halfway!" button
+![First screenshot](images/1img.png)
+Format: ![Alt Landing page view](url)
