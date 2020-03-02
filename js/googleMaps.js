@@ -4,7 +4,7 @@
 
 
 var map;
-console.log('google maps js link ok');
+// console.log('google maps js link ok');
 // var player1 = '3 Hermann Museum Cir Dr Houston';
 // var player2 = '3 Hermann Museum Cir Dr Houston';
 // var player2 = '2101 E NASA Pkwy, Houston, TX 77058';
@@ -105,11 +105,11 @@ function displayDirections() {
         destination: destination,
         travelMode: google.maps.TravelMode[mode], //the travel mode the user selected
     }, function (response, status) {
-        console.log(response);
+        // console.log(response);
         var totalPointsInRoute = response.routes[0].overview_path.length;
-        console.log(totalPointsInRoute); //this is the total number of points in our route
+        // console.log(totalPointsInRoute); //this is the total number of points in our route
         var midpointIndex = Math.round(totalPointsInRoute / 2);
-        console.log(`midpoint index is: ${midpointIndex}`);
+        // console.log(`midpoint index is: ${midpointIndex}`);
         // var midpoint = response.routes[0].overview_path[parseInt( numberofWaypoints / 2)];
         // var midpoint = response.routes[0].overview_path[midpointIndex];
         var distanceSum = 0;
@@ -119,7 +119,7 @@ function displayDirections() {
         var totalTime = response.routes[0].legs[0].duration['value'];
         var midPointTime = Math.round(totalTime / 2);
         var numberOfSteps = response.routes[0].legs[0].steps.length;
-        console.log(`total time is: ${totalTime}`);
+        // console.log(`total time is: ${totalTime}`);
         var distanceSum = 0;
         var timeSum = 0;
         var pathPointSum = 0;
@@ -172,10 +172,13 @@ function displayDirections() {
         // console.log(midpoint.lat());
         let nearbyRestaurants = [];
         // let restaurantMarkers = [];
+        console.log(`the restaurant pull lattitude is ${midpoint.lat()}`);
+        console.log(`the restaurant pull longitude is ${midpoint.lng()}`);
+
         $.get(`https://developers.zomato.com/api/v2.1/search?entity_id=277&entity_type=city&count=100&lat=${midpoint.lat()}&lon=${midpoint.lng()}&radius=3000&sort=real_distance&apikey=05c4a1701a35a643b3bd67c27c6045e7`)
             .done((results) => {
                 nearbyRestaurants = [...nearbyRestaurants, ...results.restaurants];
-                console.log(nearbyRestaurants);
+                // console.log(nearbyRestaurants);
             })
             .done(() => {
                 for (let i = 0; i < nearbyRestaurants.length; i++) {
@@ -229,19 +232,19 @@ function displayDirections() {
                         restaurantMarkers[i].setMap(map);
                     }
                 }
-                console.log(midpoint.lat())
-                console.log(midpoint.lng())
+                // console.log(midpoint.lat())
+                // console.log(midpoint.lng())
                 fetch(`https://developers.zomato.com/api/v2.1/search?entity_id=277&entity_type=city&count=100&lat=${midpoint.lat()}&lon=${midpoint.lng()}&radius=3000&sort=real_distance&apikey=05c4a1701a35a643b3bd67c27c6045e7`)
                     .then((response) => {
                         return response.json();
                     })
                     .then((res_array) => {
-                        console.log(res_array)
+                        // console.log(res_array);
                         let arrayOfNearby = res_array.restaurants
-                        console.log(arrayOfNearby)
+                        // console.log(arrayOfNearby);
                         let $listGroupContainer = $('.list-group');
                         let liTags = arrayOfNearby.map((e) => {
-                            console.log(e.restaurant.name)
+                            // console.log(e.restaurant.name);
                             return `<li class='list-group-item list-group-item-action'> 
                             <h5>${e.restaurant.name}</h5> 
                             <p> ${e.restaurant.location.address} 
@@ -260,7 +263,7 @@ function displayDirections() {
             // directionsDisplay.setMap(null);
             // directionsDisplay.setDirections(null);
             // directionDisplay.set('directions', null);
-            console.log('restaurants result check');
+            // console.log('restaurants result check');
             directionsDisplay = new google.maps.DirectionsRenderer({ //we need to create a new directions renderer
                 //this renderer displays the detailed steps and polylines
                 map: map, //specifies which map we want, itc our map
